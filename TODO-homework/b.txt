@@ -1,0 +1,47 @@
+// черновик
+
+
+let todoList = [];
+if (localStorage.getItem('todo')) {
+    todoList = JSON.parse(localStorage.getItem('todo'));
+    displayMessages();
+}
+
+btn.addEventListener('click', function () {
+    const newTodo = {
+        todo: addMessage.value,
+        checked: false,
+    };
+    if (addMessage.value === "") return;
+    todoList.push(newTodo);
+    displayMessages();
+    localStorage.setItem('todo', JSON.stringify(todoList));
+});
+
+function displayMessages() {
+    let displayMessages = '';
+    todoList.forEach((item, i) => {
+        displayMessages += `
+     <li>
+        <input type='checkbox' id ='item_${i}' ${item.checked ? 'checked' : ''}>
+        <labael for='item_${i}'>${item.todo}</label>
+     </li>
+    `;
+        todo.innerHTML = displayMessages;
+
+        
+    });
+
+ }
+// todo.addEventListener('change', (e) => {
+//     let idInput = e.target.getAttribute('id');
+//     let forLabel = todo.querySelector('[for=' + idInput + ']');
+//     let valueLabel = forLabel.innerHTML;
+
+//     todoList.forEach((item) => {
+//         if (item.todo === valueLabel) {
+//             item.checked === !item.checked;
+//             localStorage.setItem('todo', JSON.stringify(todoList));
+//         }
+//     });
+// });
